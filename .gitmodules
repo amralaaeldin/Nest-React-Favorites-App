@@ -1,6 +1,6 @@
 [submodule "client"]
 	path = client
-	url = ./client
+	url = https://github.com/amralaaeldin/React-Favorites-App.git
 [submodule "server"]
 	path = server
-	url = ./server
+	url = https://github.com/amralaaeldin/Nest-Favorites-App.git
