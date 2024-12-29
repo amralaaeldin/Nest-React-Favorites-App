@@ -28,7 +28,9 @@ The main data source of the app is [OMDb API]('https://www.omdbapi.com/').
 
 ## Installation
 
-### Step 1: Clone the Repository & Install Dependencies
+### Without Docker
+
+#### Step 1: Clone the Repository & Install Dependencies
 
 Clone the repository to your local machine:
 
@@ -81,3 +83,33 @@ npm run dev
 
 You can access the application at `http://localhost:5173`.
 
+### With Docker
+
+#### Step 1: Clone the Repository
+
+Clone the repository to your local machine:
+
+```bash
+git clone --recurse-submodules https://github.com/amralaaeldin/Nest-React-Favorites-App
+cd Nest-React-Favorites-App
+```
+
+#### Step 2: Build the Docker Image using Docker Compose
+
+Build the Docker image using the following command:
+
+```bash
+docker-compose up --build
+```
+
+#### Step 3: Start the Development Server
+
+You can access the application at `http://localhost:5173`.
+
+## Troubleshooting
+
+If you run into issues:
+
+- Ensure Docker is running if you're using Docker.
+- Make sure you have the correct file permissions if you're running on a local system.
+- Check your .env file for any configuration mistakes (like the wrong database credentials).

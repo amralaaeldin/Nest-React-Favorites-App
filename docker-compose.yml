@@ -1,0 +1,66 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+      args:
+        - VITE_SERVER_URL=http://localhost:3000
+    ports:
+      - "5173:80"
+    networks:
+      - app-network
+    environment:
+      - VITE_SERVER_URL=http://localhost:3000
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - app-network
+    environment:
+      - DB_URL=postgresql://postgres:password@postgres:5432/movies_db?schema=public
+      - REDIS_URL=redis://redis:6379
+      - PORT=3000
+      - JWT_SECRET=your_jwt_secret_key
+      - SALT_ROUNDS=10
+      - OMDB_API_KEY=81e71765
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - app-network
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: movies_db
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis_data:
