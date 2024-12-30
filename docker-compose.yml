@@ -4,13 +4,13 @@ services:
       context: ./client
       dockerfile: Dockerfile
       args:
-        - VITE_SERVER_URL=http://localhost:3000
+        - VITE_SERVER_URI=http://localhost:3000
     ports:
       - "5173:80"
     networks:
       - app-network
     environment:
-      - VITE_SERVER_URL=http://localhost:3000
+      - VITE_SERVER_URI=http://localhost:3000
     depends_on:
       - server
 
@@ -26,8 +26,8 @@ services:
     networks:
       - app-network
     environment:
-      - DB_URL=postgresql://postgres:password@postgres:5432/movies_db?schema=public
-      - REDIS_URL=redis://redis:6379
+      - DB_URI=postgresql://postgres:password@postgres:5432/movies_db?schema=public
+      - REDIS_URI=redis://redis:6379
       - PORT=3000
       - JWT_SECRET=your_jwt_secret_key
       - SALT_ROUNDS=10

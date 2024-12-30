@@ -49,14 +49,14 @@ npm install
 
 - Create a `.env` file in the `server` directory and define the environment variables in .env.example file.
 
-- - Set the DB_URL to your postgres database url.
+- - Set the DB_URI to your postgres database url.
 
 ```bash
 PORT=3000
-DB_URL=postgresql://postgres:password@127.0.0.1:5432/movies_db?schema=public
+DB_URI=postgresql://postgres:password@127.0.0.1:5432/movies_db?schema=public
 JWT_SECRET=your_jwt_secret_key
 SALT_ROUNDS=10
-REDIS_URL=redis://localhost:6379
+REDIS_URI=redis://localhost:6379
 OMDB_API_KEY=81e71765
 ```
 
